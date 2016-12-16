@@ -1,0 +1,159 @@
+import java.util.*;
+public abstract class Player {
+
+	public static final int MAX = 11; 
+	public static String spelplan[][] = new String[11][11]; 
+	public static String start= Main.start;
+	public static String stop = Main.stop;
+
+	public static void print(){
+		
+	
+			
+		System.out.format("%1$2s", "");  		// om programmet fuckar upp, kolla och kanske ändra detta.
+		for(int i = 1; i < MAX  ; i++){
+
+			System.out.format("%1$4s", i);
+
+		for(int k = 0; k < MAX ; k++){
+				spelplan[i][k] = "~";
+				
+				for(int l = 0; l < MAX ; l++){
+					spelplan[i][k] = "~";
+
+				}
+			}
+		}
+			if(splitX(start) == splitX(stop)){		//om X-koordinaterna är lika
+				
+			for(int j = 0; j <= calculation(start, stop) ; j++){
+
+					spelplan[splitY(start) + j][splitX(stop)] = "X";
+
+			}
+			
+		}
+			
+	if(splitY(start) == splitY(stop)){		//om Y-koordinaterna är lika
+				
+for(int f = 0; f <= calculation(start,stop) ; f ++){
+
+		spelplan[splitY(start) ][splitX(start) + f] = "X" ;		
+	
+
+	}
+	}
+		for(int a = 1 ; a< MAX  ; a++){
+
+			System.out.println("");
+			if((a+1) > 10)
+				System.out.format("%1$s", a);
+
+			else{
+
+				System.out.format("%1$s", a + " ");
+			}
+
+			for(int o = 1; o < MAX ; o++){  
+
+
+				System.out.format("%1$4s", spelplan[a][o]);
+				
+
+		}
+		
+			}
+System.out.println("");
+System.out.println("");
+	}
+	
+	
+	public static int splitX(String s){
+
+		String[] koordinaterX = s.split("\\.");
+		String sign = koordinaterX[0];
+		int xkor = Integer.parseInt(sign);
+
+		return xkor;
+
+	}
+
+	public static int splitY(String k){
+
+		String[] koordinaterY = k.split("\\.");
+		String signY = koordinaterY[1];
+		int ykor= Integer.parseInt(signY);
+
+		return ykor;
+
+	}
+	
+	public static boolean validInput(String sk, String skr){
+		
+		if((splitY(sk) == splitY(skr)) || (splitX(sk) == splitX(skr) )){
+			return true;
+			
+		}else{
+			
+			return false;
+		}
+		
+	}
+	public static void biggest(String a, String b){
+		
+		if((splitX(a) > splitX(b)) || (splitY(a) > splitY(b))){
+
+			start = b;
+			stop = a;
+			
+		}
+			
+	}
+		
+	
+
+	public static int calculation(String str, String str2){
+
+		int xkordinat = splitX(str);
+		int xkordinat2 = splitX(str2);;
+		
+		if(xkordinat == xkordinat2){		//För X-koordinater lika
+
+			if(splitY(str) > splitY(str2)){
+
+				return splitY(str) - splitY(str2);
+
+			}else{
+
+				return splitY(str2) - splitY(str);
+			}
+			
+		}
+			if(splitY(str) == splitY(str2)){  	//för Y-koORDINATER
+				
+				int firstkory = splitX(str);
+				int secondkory = splitX(str2);
+
+				if(firstkory > secondkory){
+
+					return firstkory - secondkory;
+
+				}else{
+					
+					return secondkory - firstkory;
+				
+				}
+
+			}else {
+				
+				return 0;
+			}
+	
+		}
+
+	}
+	
+
+
+	
+	
