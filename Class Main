@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+
+
+public class Main {
+	
+	public static String start ;
+    public static String stop ;
+	
+	public static void main (String[] s){
+Scanner scan = new Scanner(System.in);	
+
+boolean loop = true;		
+
+while(loop){
+		System.out.println("Spelare 1, skriv in koordinaten för där din båt ska starta ");
+		
+		 start = scan.nextLine();
+		
+		System.out.println("Skriv in koordinaterna för där din båt ska sluta");
+		
+		stop = scan.nextLine();
+		
+		if(Player.validInput(start, stop) == true){
+			loop = false;
+		}
+}
+Player.biggest(start, stop);
+
+		Player.print();
